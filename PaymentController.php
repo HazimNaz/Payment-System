@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\CreditCardDB;
 use App\Models\OnlineBankingDB;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+
 class PaymentController extends Controller
 {
 
@@ -69,7 +69,7 @@ class PaymentController extends Controller
 
         $payment->save();
         
-         return redirect('adminpay')->with('success', 'Payment Detail Saved!');
+         return redirect('payment')->with('success', 'Payment Detail Saved!');
     }
 
     /**
@@ -78,10 +78,10 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($payment_id)
     {
-         //$creditcard = CreditCardDB::find($transaction_id);
-        //return view('payment.show', compact('creditcard'));
+        $creditcard = CreditCardDB::all();
+        return view('payment.show', compact('creditcard'));
     }
 
     /**
